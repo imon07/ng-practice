@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="store" xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.css"/>
+    <script src="../../js/angular.js"></script>
+    <script src="../../js/app.js"></script>
+</head>
+
+<body ng-controller="StoreController as store">
+<!--<div ng-repeat="product in store.products">-->
+<!--<div ng-hide="product.soldOut">-->
+<!--<h1>{{product.name}}</h1>-->
+
+<!--<h2>{{product.price}}</h2>-->
+
+<!--<p>{{product.description}}</p>-->
+<!--<button ng-show="product.canPurchase">Add to cart</button>-->
+<!--</div>-->
+<!--</div>-->
+
+<div ng-repeat="n in [1,2,3,4,5,6,7]">
+    Subject {{ n }} Credit 3:
+    <select ng-model="store.blah[n-1]"
+            ng-options="i.value as i.label for i in store.grades">
+    </select>
+</div>
+
+Subject 8 Credit 1.5:
+<select ng-model="store.halfCredit"
+        ng-options="i.value as i.label for i in store.grades">
+</select>
+
+<button ng-model="store.result" ng-click="store.calculate()">Calculate</button>
+<div>
+    sub 1: {{ store.blah[0] }}<br>
+    sub 2: {{ store.blah[1] }}<br>
+    sub 3: {{ store.blah[2] }}<br>
+    sub 4: {{ store.blah[3] }}<br>
+    sub 5: {{ store.blah[4] }} <br>
+    sub 6: {{ store.blah[5] }} <br>
+    sub 7: {{ store.blah[6] }}<br>
+    sub 8: {{ store.halfCredit }}<br>
+</div>
+
+<div ng-show="store.result.showResult">
+    <p>CGPA: {{ store.result.cgpa }}</p>
+
+    <p>GRADE: {{ store.result.grade }}</p>
+</div>
+</body>
+</html>
