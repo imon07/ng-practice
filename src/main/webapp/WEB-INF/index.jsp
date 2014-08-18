@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html ng-app="treatmentModule" xmlns="http://www.w3.org/1999/html">
 <head lang="en">
     <meta charset="UTF-8">
@@ -7,9 +9,9 @@
     <script src="/js/js2/app.js"></script>
 </head>
 
-<body ng-controller="treatmentController">
+<body ng-controller="treatmentController" ng-init="init('${formId}')">
 <form>
-    [<a href ng-click="loadTreatments()">load</a> ]
+    <!--[<a href ng-click="loadTreatments()">load</a> ]-->
     Problem Name:<input ng-model="treatment.problemName" type="text"/>
     longTermGoal: <input ng-model="treatment.longTermGoal" type="text"/>
 

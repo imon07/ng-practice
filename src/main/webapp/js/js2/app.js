@@ -2,10 +2,11 @@
     var app = angular.module('treatmentModule', []);
 
     app.controller('treatmentController', function ($scope, $http) {
-        $scope.treatment = new treatment();
+//        $scope.treatment = new treatment();
 
-        $scope.loadTreatments = function () {
-            $http.get("/api/data").success(function (data) {
+        $scope.init = function (formId) {
+            $scope.formId = formId;
+            $http.get("/api/data" + "?formId=" + $scope.formId).success(function (data) {
                 $scope.treatment = data;
             }).error(function () {
                     alert("Unexpected Error occurred")

@@ -1,10 +1,8 @@
 package app;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author imon
@@ -13,19 +11,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
-    public String index() {
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index(ModelMap model, @RequestParam(value = "formId", defaultValue = "") String formId) {
+        model.put("formId", formId);
         System.out.println("a");
-        return "index.html";
+        return "/WEB-INF/index.jsp";
     }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
-    public @ResponseBody Treatment getData() {
-        return new Treatment();
+    @ResponseBody
+    public Treatment getData(@RequestParam(value = "formId", defaultValue = "") String formId) {
+        System.out.println(formId);
+        Treatment treatment = new Treatment();
+        treatment.setProblemName(formId);
+        return  treatment;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public @ResponseBody String save(@RequestBody Treatment treatment) {
+    @ResponseBody
+    public String save(@RequestBody Treatment treatment) {
         System.out.println(treatment.toString());
         return "success";
     }
