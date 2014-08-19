@@ -2,6 +2,7 @@
     var app = angular.module('treatmentModule', []);
 
     app.controller('treatmentController', function ($scope, $http) {
+        $scope.loading = true;
 
         $scope.init = function (formId) {
             $scope.formId = formId;
@@ -10,12 +11,14 @@
             $http.get(url)
                 .success(function (data) {
                     $scope.treatment = data;
+                    $scope.loading = false;
                 }).error(function () {
                     alert("Unexpected Error occurred")
                 });
         };
 
         $scope.saveTreatment = function () {
+            $scope.loading = true;
             var url = '/api/save';
             $http.post(url, $scope.treatment)
                 .success(function (data) {
@@ -23,6 +26,7 @@
                         $scope.errorProblemName = data.errorProblemName;
                         $scope.errorLongTermGoal = data.errorLongTermGoal;
                     }
+                    $scope.loading = false;
                 }).error(function (data) {
 
                 })

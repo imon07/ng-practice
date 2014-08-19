@@ -23,16 +23,18 @@ public class IndexController {
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     @ResponseBody
-    public Treatment getData(@RequestParam(value = "formId", defaultValue = "") String formId) {
+    public Treatment getData(@RequestParam(value = "formId", defaultValue = "") String formId) throws InterruptedException {
+        Thread.sleep(1000 * 5);
         System.out.println(formId);
         Treatment treatment = new Treatment();
         treatment.setProblemName(formId);
-        return  treatment;
+        return treatment;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, String> save(@RequestBody Treatment treatment) {
+    public Map<String, String> save(@RequestBody Treatment treatment) throws InterruptedException {
+        Thread.sleep(1000 * 5);
         System.out.println(treatment.toString());
         Map<String, String> errorMap = new HashMap<String, String>();
         errorMap.put("errorProblemName", "Invalid Problem name");
