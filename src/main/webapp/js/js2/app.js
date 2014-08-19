@@ -7,19 +7,23 @@
             $scope.formId = formId;
             var url = "/api/data" + "?formId=" + $scope.formId;
 
-            $http.get(url).success(function (data) {
-                $scope.treatment = data;
-            }).error(function () {
-                alert("Unexpected Error occurred")
-            });
+            $http.get(url)
+                .success(function (data) {
+                    $scope.treatment = data;
+                }).error(function () {
+                    alert("Unexpected Error occurred")
+                });
         };
 
         $scope.saveTreatment = function () {
             var url = '/api/save';
             $http.post(url, $scope.treatment)
-                .success(function () {
-
-                }).error(function () {
+                .success(function (data) {
+                    if (!data.success) {
+                        $scope.errorProblemName = data.errorProblemName;
+                        $scope.errorLongTermGoal = data.errorLongTermGoal;
+                    }
+                }).error(function (data) {
 
                 })
         };

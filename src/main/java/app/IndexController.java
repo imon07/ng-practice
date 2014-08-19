@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author imon
  * @since 8/13/14 8:33 PM
@@ -29,8 +32,11 @@ public class IndexController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(@RequestBody Treatment treatment) {
+    public Map<String, String> save(@RequestBody Treatment treatment) {
         System.out.println(treatment.toString());
-        return "success";
+        Map<String, String> errorMap = new HashMap<String, String>();
+        errorMap.put("errorProblemName", "Invalid Problem name");
+        errorMap.put("errorLongTermGoal", "Invalid Long Term Goal");
+        return errorMap;
     }
 }

@@ -6,21 +6,22 @@
 
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/bootstrap.css"/>
     <script src="/js/angular.js"></script>
     <script src="/js/js2/app.js"></script>
 </head>
 
 <body ng-controller="treatmentController" ng-init="init('${formId}')">
 
-<form>
+<form ng-submit="saveTreatment()">
     <label>Problem Name:</label>
-    <input ng-model="treatment.problemName" type="text"/>
+    <input ng-model="treatment.problemName" type="text" ng-required="!treatment.problemName"/>
+    <span style="color: red" ng-show="errorProblemName">{{ errorProblemName }}</span>
 
     <br>
 
     <label>longTermGoal:</label>
     <input ng-model="treatment.longTermGoal" type="text"/>
+    <span style="color: red" ng-show="errorLongTermGoal">{{ errorLongTermGoal }}</span>
 
     <br>
 
@@ -54,7 +55,7 @@
     [<a href ng-click="addShortTermGoal()">Add Short Term Goal</a>]
 
     <br>
-    <button ng-click="saveTreatment()">Save</button>
+    <button type="submit">Save</button>
 </form>
 
 
