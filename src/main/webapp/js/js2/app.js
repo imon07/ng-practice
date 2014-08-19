@@ -2,21 +2,24 @@
     var app = angular.module('treatmentModule', []);
 
     app.controller('treatmentController', function ($scope, $http) {
-//        $scope.treatment = new treatment();
 
         $scope.init = function (formId) {
             $scope.formId = formId;
-            $http.get("/api/data" + "?formId=" + $scope.formId).success(function (data) {
+            var url = "/api/data" + "?formId=" + $scope.formId;
+
+            $http.get(url).success(function (data) {
                 $scope.treatment = data;
             }).error(function () {
-                    alert("Unexpected Error occurred")
-                });
+                alert("Unexpected Error occurred")
+            });
         };
 
         $scope.saveTreatment = function () {
-            $http.post('/api/save', $scope.treatment).success(function () {
+            var url = '/api/save';
+            $http.post(url, $scope.treatment)
+                .success(function () {
 
-            }).error(function () {
+                }).error(function () {
 
                 })
         };
