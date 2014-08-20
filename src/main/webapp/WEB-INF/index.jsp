@@ -2,39 +2,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<html ng-app="treatmentModule" xmlns="http://www.w3.org/1999/html">
+<!doctype html>
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="treatmentModule" >
 
 <head lang="en">
     <meta charset="UTF-8">
-    <script src="/js/angular.js"></script>
+    <script src="/js/js2/angular-1.2.12.min.js"></script>
     <script src="/js/js2/app.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/spinner.css">
+    <%--<link rel="stylesheet" type="text/css" href="/css/spinner.css">--%>
 </head>
 
 <body ng-controller="treatmentController" ng-init="init('${formId}')">
 
-<div ng-class="{cover: loading}"></div>
+<%--<div ng-class="{cover: loading}"></div>--%>
 
-<div ng-class="{modal: loading}">
-    <div id="circularG" ng-show="loading">
-        <div id="circularG_1" class="circularG">
-        </div>
-        <div id="circularG_2" class="circularG">
-        </div>
-        <div id="circularG_3" class="circularG">
-        </div>
-        <div id="circularG_4" class="circularG">
-        </div>
-        <div id="circularG_5" class="circularG">
-        </div>
-        <div id="circularG_6" class="circularG">
-        </div>
-        <div id="circularG_7" class="circularG">
-        </div>
-        <div id="circularG_8" class="circularG">
-        </div>
-    </div>
-</div>
+<%--<div ng-class="{modal: loading}">--%>
+    <%--<div id="circularG" ng-show="loading">--%>
+        <%--<div id="circularG_1" class="circularG">--%>
+        <%--</div>--%>
+        <%--<div id="circularG_2" class="circularG">--%>
+        <%--</div>--%>
+        <%--<div id="circularG_3" class="circularG">--%>
+        <%--</div>--%>
+        <%--<div id="circularG_4" class="circularG">--%>
+        <%--</div>--%>
+        <%--<div id="circularG_5" class="circularG">--%>
+        <%--</div>--%>
+        <%--<div id="circularG_6" class="circularG">--%>
+        <%--</div>--%>
+        <%--<div id="circularG_7" class="circularG">--%>
+        <%--</div>--%>
+        <%--<div id="circularG_8" class="circularG">--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <div>
     <form ng-submit="saveTreatment()">
