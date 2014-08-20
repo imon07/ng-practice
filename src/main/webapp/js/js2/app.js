@@ -1,8 +1,35 @@
 (function () {
     var app = angular.module('treatmentModule', []);
 
+    app.directive('modalDialog', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                show: '='
+            },
+            replace: true, // Replace with the template below
+            transclude: true, // we want to insert custom content inside the directive
+            link: function (scope, element, attrs) {
+                scope.dialogStyle = {};
+                if (attrs.width)
+                    scope.dialogStyle.width = attrs.width;
+                if (attrs.height)
+                    scope.dialogStyle.height = attrs.height;
+                scope.hideModal = function () {
+                    scope.show = false;
+                };
+            },
+            template: "<div class='ng-modal' ng-show='show'>\n" +
+                "  <div class='ng-modal-overlay'></div>\n" +
+                "  <div class='ng-modal-dialog' ng-style='dialogStyle'>\n" +
+                "    <div class='ng-modal-dialog-content' ng-transclude></div>\n" +
+                "  </div>\n" +
+                "</div>"
+        };
+    });
+
     app.controller('treatmentController', function ($scope, $http) {
-        $scope.loading = true;
+        $scope.modalShown = true;
 
         $scope.init = function (formId) {
             $scope.formId = formId;
@@ -11,17 +38,18 @@
             $http.get(url)
                 .success(function (data) {
                     $scope.treatment = data;
-                    $scope.loading = false;
+                    $scope.modalShown = false;
                 }).error(function () {
                     alert("Unexpected Error occurred")
                 });
         };
 
         $scope.saveTreatment = function () {
-            $scope.loading = true;
+            $scope.modalShown = true;
             var url = '/api/save';
             $http.post(url, $scope.treatment)
                 .success(function (data) {
+                    $scope.modalShown = false;
                     if (!data.success) {
                         $scope.errorProblemName = data.errorProblemName;
                         $scope.errorLongTermGoal = data.errorLongTermGoal;

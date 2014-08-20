@@ -3,39 +3,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!doctype html>
-<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="treatmentModule" >
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="treatmentModule">
 
 <head lang="en">
     <meta charset="UTF-8">
-    <script src="/js/js2/angular-1.2.12.min.js"></script>
-    <script src="/js/js2/app.js"></script>
-    <%--<link rel="stylesheet" type="text/css" href="/css/spinner.css">--%>
+    <script type="text/javascript" src="/js/js2/angular-1.2.12.min.js"></script>
+    <script type="text/javascript" src="/js/js2/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/modal.css">
 </head>
 
 <body ng-controller="treatmentController" ng-init="init('${formId}')">
-
-<%--<div ng-class="{cover: loading}"></div>--%>
-
-<%--<div ng-class="{modal: loading}">--%>
-    <%--<div id="circularG" ng-show="loading">--%>
-        <%--<div id="circularG_1" class="circularG">--%>
-        <%--</div>--%>
-        <%--<div id="circularG_2" class="circularG">--%>
-        <%--</div>--%>
-        <%--<div id="circularG_3" class="circularG">--%>
-        <%--</div>--%>
-        <%--<div id="circularG_4" class="circularG">--%>
-        <%--</div>--%>
-        <%--<div id="circularG_5" class="circularG">--%>
-        <%--</div>--%>
-        <%--<div id="circularG_6" class="circularG">--%>
-        <%--</div>--%>
-        <%--<div id="circularG_7" class="circularG">--%>
-        <%--</div>--%>
-        <%--<div id="circularG_8" class="circularG">--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
 
 <div>
     <form ng-submit="saveTreatment()">
@@ -83,6 +60,12 @@
         <br>
         <button type="submit">Save</button>
     </form>
+    <modal-dialog show='modalShown'>
+        <div>
+            <img src="/image/wait_icon.gif" alt="Wait" border="none">
+            <span>Working... Please wait</span>
+        </div>
+    </modal-dialog>
 </div>
 
 </body>
